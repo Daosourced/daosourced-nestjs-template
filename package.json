@@ -3,6 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "description": "Template based on Nest TypeScript starter",
+  "author": "DaoSourced",
   "license": "MIT",
   "scripts": {
     "build": "nest build",
