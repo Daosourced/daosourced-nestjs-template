@@ -1,25 +1,19 @@
-import { INestApplication } from "@nestjs/common";
-import { Test } from "@nestjs/testing";
 import * as request from "supertest";
-import { AppModule } from "../../src/app.module";
+import { AppHandles, e2eBootstrap } from "./e2e-bootstrap.util";
 
-describe("HealthCheckController", () => {
-  let app: INestApplication;
+let appHandles: AppHandles;
 
+describe("HealthCheck", () => {
   beforeAll(async () => {
-    const moduleFixture = await Test.createTestingModule({
-      imports: [AppModule],
-    }).compile();
-
-    app = moduleFixture.createNestApplication();
-    await app.init();
+    appHandles = await e2eBootstrap();
   });
 
   afterAll(async () => {
-    await app.close();
+    // await AsyncCollector.stop();
+    await appHandles.app.close();
   });
 
   it("GET /health", () => {
-    return request(app.getHttpServer()).get("/health").expect(200);
+    return request(appHandles.app.getHttpServer()).get("/health").expect(200);
   });
 });
