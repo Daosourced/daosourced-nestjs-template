@@ -1,7 +1,7 @@
 import { INestApplication, Logger } from "@nestjs/common";
 import { Test, TestingModule } from "@nestjs/testing";
 import { APP_MODULE_METADATA } from "../../src/app.module";
-import { configureApp } from "../../src/main";
+import { configureApp } from "../../src/config/app.config";
 
 const testLogger = new Logger("test");
 
@@ -30,7 +30,8 @@ export async function e2eBootstrap(): Promise<AppHandles> {
   // });
   // await app.startAllMicroservices();
 
-  await app.init(); // Required in tests
+  // Necessary to call this function in e2e test
+  await app.init();
 
   return { moduleFixture, app };
 }
