@@ -9,8 +9,13 @@ describe("HealthCheck", () => {
   });
 
   afterAll(async () => {
+    // Stop AsyncCollector polling if it is used (e.g. as dependency of FirebaseService)
     // await AsyncCollector.stop();
-    await appHandles.app.close();
+    // NOTE:Calling app.close() doesn't terminate the Node process
+    // but only triggers the onModuleDestroy() and onApplicationShutdown() hooks,
+    // so if there are some intervals, long-running background tasks,
+    // etc. the process won't be automatically terminated.
+    // await appHandles.app.close();
   });
 
   it("GET /health", () => {

@@ -3,14 +3,21 @@ import { Test, TestingModule } from "@nestjs/testing";
 import { APP_MODULE_METADATA } from "../../src/app.module";
 import { configureApp } from "../../src/config/app.config";
 
-const testLogger = new Logger("test");
+export const testLogger = new Logger("TestLogger");
 
 export type AppHandles = {
   moduleFixture: TestingModule;
   app: INestApplication;
 };
 
+/**
+ * Modify this function to match with bootstrap of the app
+ * @returns AppHandles
+ */
 export async function e2eBootstrap(): Promise<AppHandles> {
+  // Call this function if typeorm-transactional-cls-hooked is used
+  // initializeTransactionalContext();
+
   let moduleFixture = await Test.createTestingModule(APP_MODULE_METADATA)
     .setLogger(testLogger) // Set this if we want app log is outputted with Jest log
     .compile();
@@ -30,7 +37,7 @@ export async function e2eBootstrap(): Promise<AppHandles> {
   // });
   // await app.startAllMicroservices();
 
-  // Necessary to call this function in e2e test
+  // Necessary to call this function to bootstrap e2e tests
   await app.init();
 
   return { moduleFixture, app };

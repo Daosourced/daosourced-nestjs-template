@@ -17,7 +17,7 @@ import helmet from "helmet";
 import * as morgan from "morgan";
 
 /**
- * Separated from main.ts to avoid accidental invocation of bootstrap()
+ * Separated from main.ts to avoid accidental invocation of bootstrap() when configuring e2e test
  * @param app
  */
 export function configureApp(app: INestApplication) {

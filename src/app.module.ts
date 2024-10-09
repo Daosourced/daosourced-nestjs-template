@@ -1,5 +1,6 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
+import { CommonModule } from "./common/common.module";
 import { ControllerModule } from "./controller/controller.module";
 
 const NODE_ENV = process.env.NODE_ENV;
@@ -17,7 +18,11 @@ const globalConfigModule = ConfigModule.forRoot({
 });
 
 export const APP_MODULE_METADATA = {
-  imports: [globalConfigModule, ControllerModule],
+  imports: [
+    globalConfigModule,
+    CommonModule, // Optional
+    ControllerModule,
+  ],
   controllers: [],
   providers: [],
 };

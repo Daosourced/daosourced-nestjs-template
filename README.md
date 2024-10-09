@@ -8,6 +8,12 @@
 yarn install
 ```
 
+## Build
+
+```bash
+yarn build
+```
+
 ## Test
 
 ### Unit Tests
