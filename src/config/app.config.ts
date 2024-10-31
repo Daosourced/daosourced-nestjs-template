@@ -36,7 +36,6 @@ export function configureApp(app: INestApplication) {
   // app.enableVersioning();
 
   const reflector = app.get(Reflector);
-
   app.useGlobalInterceptors(new ClassSerializerInterceptor(reflector));
 
   app.useGlobalPipes(
