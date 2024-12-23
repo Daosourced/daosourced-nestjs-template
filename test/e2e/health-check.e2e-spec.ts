@@ -1,4 +1,4 @@
-import * as request from "supertest";
+import * as supertest from "supertest";
 import { AppHandles, e2eBootstrap } from "./e2e-bootstrap.util";
 
 let appHandles: AppHandles;
@@ -19,6 +19,6 @@ describe("HealthCheck", () => {
   });
 
   it("GET /health", () => {
-    return request(appHandles.app.getHttpServer()).get("/health").expect(200);
+    return supertest(appHandles.app.getHttpServer()).get("/health").expect(200);
   });
 });

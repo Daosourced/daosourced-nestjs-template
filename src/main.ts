@@ -12,6 +12,7 @@ async function bootstrap(): Promise<NestExpressApplication> {
   configureApp(app);
 
   // Start microservices
+  // Require @nestjs/microservices
   // const redisConfig = app.select(AppConfigModule).get(RedisConfig);
   // const microservice = app.connectMicroservice<MicroserviceOptions>({
   //   transport: Transport.REDIS,
