@@ -13,6 +13,9 @@ const providers: Provider[] = [
   },
 ];
 
+/**
+ * Provide: MODULE_REF_HOLDER
+ */
 @Global()
 @Module({
   providers: providers,
